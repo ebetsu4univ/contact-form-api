@@ -111,6 +111,16 @@ textarea{
     background-color: #fff;
 }
 
+.input-invalid {
+	border: 1px solid #f50000;
+}
+
+.form-invalid {
+	color: #f50000;
+	font-size: 12px;
+	padding-left: 12px;
+}
+
 @media screen and (max-width: 880px){
 	.contact-box{
 		grid-template-columns: 1fr;
