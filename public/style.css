@@ -27,13 +27,13 @@ body{
 	height: 100%;
 	left: 0;
 	top: 0;
-	background: url("img/bg.jpg") no-repeat center;
+	background: url("img/bg1.webp") no-repeat center;
 	background-size: cover;
 	filter: blur(50px);
 	z-index: -1;
 }
 .contact-box{
-	max-width: 850px;
+	max-width: 1400px;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	justify-content: center;
@@ -44,19 +44,30 @@ body{
 }
 
 .left{
-	background: url("img/bg.jpg") no-repeat center;
+	background: url("img/bg1.webp") no-repeat center;
 	background-size: cover;
 	height: 100%;
 }
 
 .right{
-	padding: 25px 40px;
+	padding: 60px 40px;
 }
 
 h2{
 	position: relative;
-	padding: 0 0 10px;
+	padding: 0 0 20px;
+	margin-bottom: 15px;
+	font-size: 2.0rem;
+}
+
+.description {
+	text-align: left;
 	margin-bottom: 10px;
+	font-size: 1.1rem;
+}
+
+.spacer {
+	margin-bottom: 25px;
 }
 
 h2:after{
@@ -68,7 +79,7 @@ h2:after{
     height: 4px;
     width: 50px;
     border-radius: 2px;
-    background-color: #2ecc71;
+    background-color: #22a46a;
 }
 
 .field{
@@ -76,9 +87,9 @@ h2:after{
 	border: 2px solid rgba(0, 0, 0, 0);
 	outline: none;
 	background-color: rgba(230, 230, 230, 0.6);
-	padding: 0.5rem 1rem;
+	padding: 0.8rem 1rem;
 	font-size: 1.1rem;
-	margin-bottom: 22px;
+	margin-bottom: 30px;
 	transition: .3s;
 }
 
@@ -92,8 +103,8 @@ textarea{
 
 .btn{
 	width: 100%;
-	padding: 0.5rem 1rem;
-	background-color: #2ecc71;
+	padding: 0.6rem 1rem;
+	background-color: #22a46a;
 	color: #fff;
 	font-size: 1.1rem;
 	border: none;
@@ -127,5 +138,51 @@ textarea{
 	}
 	.left{
 		height: 200px;
+	}
+}
+
+@media screen and (max-width: 700px){
+	.container {
+		padding: 30px 40px;
+	}
+	h2 {
+		font-size: 1.5rem;
+	}
+	.description {
+		font-size: 1.0rem;
+	}
+}
+
+@media screen and (max-width: 600px){
+	.right {
+		padding: 60px 30px;
+	}
+	h2 {
+		font-size: 1.2rem;
+	}
+	.description {
+		font-size: 0.8rem;
+	}
+}
+
+@media screen and (max-width: 400px){
+	.container {
+		padding: 30px 25px;
+	}
+	h2 {
+		font-size: 1.1rem;
+	}
+	.description {
+		font-size: 0.7rem;
+	}
+	.field {
+		padding: 0.5rem 1rem;
+		margin-bottom: 15px;
+	}
+	.btn {
+		padding: 0.5rem 1rem
+	}
+	.right {
+		padding: 40px 20px;
 	}
 }
