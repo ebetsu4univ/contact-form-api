@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as sgMail from '@sendgrid/mail';
-import { hostName, port } from './config';
+import { hostName, port, univArr, juniorUnivArr } from './config';
 
 const app = express();
 
@@ -8,7 +8,18 @@ app.use('/', express.static(__dirname + '/public'));
 app.use(express.json());
 
 app.post('/auth/', (req, res) => {
-  sendEmail(req.body.email);
+  const pattern = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
+  const email = req.body.email;
+  if (pattern.test(email)) {
+    if (isAcademicEmail(email)) {
+      sendEmail(email);
+      res.status(200).json({msg: '指定のメールアドレスへ招待URL送信しました'});
+    } else {
+      res.status(400).json({msg: '学校のメールアドレスを入力してください'});
+    }
+  } else {
+    res.status(400).json({msg: 'メールアドレスとして不適切です'});
+  }
 });
 
 app.listen(port, hostName, () => {
@@ -33,3 +44,15 @@ const sendEmail = (recipient: string) => {
       console.error(error);
     });
 };
+
+const isAcademicEmail = (email: string): boolean => {
+  const emailArr = email.split('.').slice(-2);
+  if (emailArr[0] == 'ac' && emailArr[1] == 'jp') {
+    return true;
+  } else {
+    if (univArr.includes(email) || juniorUnivArr.includes(email)) {
+      return true;
+    }
+    return false;
+  }
+}
