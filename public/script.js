@@ -28,19 +28,28 @@
         headers: { 'content-type': 'application/json', },
         body: JSON.stringify(json),
       });
-      return response.json();
+      return response;
     };
 
     const emailVal = email.value;
 
     if (isValidEmail(pattern.test(emailVal), errMsg)) {
       requestEmail('http://0.0.0.0:5000/auth', emailVal)
-        .then(data => {
-          serverMsgName.textContent = data.msg;
-          console.log(data);
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(obj => {
+          if (obj.status == 200) {
+            errMsgName.textContent = '';
+            email.classList.remove('input-invalid');
 
-          // if (response.status == 200) {
-          // }
+            serverMsgName.textContent = obj.body.msg;
+          } else {
+            errMsgName.classList.add('form-invalid');
+            errMsgName.textContent = obj.body.msg;
+
+            email.classList.add('input-invalid');
+
+            serverMsgName.textContent = '';
+          }
         });
     };
   };
