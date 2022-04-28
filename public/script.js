@@ -33,8 +33,10 @@
 
     const emailVal = email.value;
 
+    const endpoint = location.protocol + '//' + location.host;
+
     if (isValidEmail(pattern.test(emailVal), errMsg)) {
-      requestEmail('http://0.0.0.0:5000/auth', emailVal)
+      requestEmail(endpoint + '/auth', emailVal)
         .then(response => response.json().then(data => ({ status: response.status, body: data })))
         .then(obj => {
           if (obj.status == 200) {
