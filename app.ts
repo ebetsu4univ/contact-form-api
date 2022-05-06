@@ -32,7 +32,7 @@ const sendEmail = (recipient: string) => {
   const discordURL = process.env.DISCORD_INVITATION_URL;
   const msg = {
     to: recipient,
-    from: 'mryuu.dev@gmail.com',
+    from: 'sano@4u.fukuts.com',
     subject: '【4大学コミュニティー】Discordへの招待URLをお送りします',
     text: '※ このメールはシステムからの自動返信です. こんにちわ! 江別４大学コミュニティ(E4U)です. この度は, 私達に興味を持ってくださりありがとうございます. Discordへの招待URLは下記になります. 招待URL: ' + discordURL + 'では, Discordにてお会いしましょう. この度はご連絡いただき誠にありがとうございました. ※ 添付の招待URLが期限切れ等の理由で無効だった場合は, 大変申し訳ございませんが江別4大学コミュニティー公式Twitterまでご連絡いただければ幸いです.',
     html: "※ このメールはシステムからの自動返信です.<br><br>こんにちわ! 江別４大学コミュニティ(E4U)です.<br>この度は, 私達に興味を持ってくださりありがとうございます.<br><br>Discordへの招待URLは下記になります.<br>招待URL: " + discordURL  + "<br><br>では, Discordにてお会いしましょう.<br>この度はご連絡いただき誠にありがとうございました.<br><br>※ 添付の招待URLが期限切れ等の理由で無効だった場合は, 大変申し訳ございませんが<a href='https://twitter.com/Ebetsu_4U'>江別4大学コミュニティー公式Twitter</a>までご連絡いただければ幸いです.",
