@@ -1,10 +1,26 @@
 import * as express from 'express';
 import * as sgMail from '@sendgrid/mail';
-import { hostName, port, univArr, juniorUnivArr } from './config';
+import { hostName, port, univArr, juniorUnivArr, ALLOWED_ORIGINS, ALLOWED_METHODS } from './config';
 
 const app = express();
 
 app.use(express.json());
+
+// レスポンスHeaderを組み立てる
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin != null && ALLOWED_ORIGINS.indexOf(origin) > -1) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', ALLOWED_METHODS.join(','));
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  }
+  if ('OPTIONS' == req.method) {
+    res.send(204);
+  } else {
+    next();
+  }
+});
 
 app.post('/auth/', (req, res) => {
   const pattern = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
