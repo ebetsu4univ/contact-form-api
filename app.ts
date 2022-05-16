@@ -4,7 +4,6 @@ import { hostName, port, univArr, juniorUnivArr } from './config';
 
 const app = express();
 
-app.use('/', express.static(__dirname + '/public'));
 app.use(express.json());
 
 app.post('/auth/', (req, res) => {
